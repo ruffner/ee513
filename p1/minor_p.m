@@ -21,9 +21,9 @@ tax = (1/fs):(1/fs):ndur/1000; % time axis for one note
 % generate n octaves of the minor p scale.
 % ommiting note 0 if not on first octave eliminates dups
 for i=1:numoct % where the second number is the desired octave count
-    if(i~=1) 
-        nfs = [nfs, (sfreq*(2^i))*2.^(mp(2:end)/12)];
-    else
+    if(i~=1) % if we're not on the first octave
+        nfs = [nfs, (sfreq*(2^i))*2.^(mp(2:end)/12)]; % start with the next to first note in the scale
+    else % otherwise concatenate including the first note
         nfs = [nfs, (sfreq*(2^i))*2.^(mp/12)];
     end
 end
