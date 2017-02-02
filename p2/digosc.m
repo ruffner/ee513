@@ -29,35 +29,27 @@ end
 
 nfreqs=length(freqs); % number of frequencies we are working with
 
-% normalize TF coeffecients so input amplitude corresponds directly to output 
-%ampscales=(freqs.*2*pi)/fs; 
-
-% vector representing coeffecients for normalizing
-% the calculation of frequencies and amplitudes
+% vector representing coeffecients for normalizing the calculation of frequencies and amplitudes
 alphas=(2*pi.*freqs)/fs;
 
 % where the TF of the digital oscillator is
 % (k*z^2) / (z^2 - 2*cos(alpha)*z + 1)
 
-% calculate numerators
 bs=[]; % vector to hold numerators
 counter=1;
-for n=amps
+for n=amps % iterate through each specified amplitude
     bs=[bs; alphas(counter)*n 0 0]; % multiply coefficient for z^2 term by desired amplitude
     counter=counter+1;
 end
 
-% calculate denominators
 as=[]; % vector to hold denominators
 for n=alphas
     % create denominators based on calculated alpha values
     as=[as; 1 -2*cos(n) 1];
 end
 
-
-% convert b/a num/denom coeffs to dfilt objects
-dfilts = [];
-for n=1:nfreqs
+dfilts = []; % vector to hold digital filter representations
+for n=1:nfreqs % convert b/a num/denom coeffs to dfilt objects
    % build vector of direct form 1 representations
    dfilts=[dfilts, dfilt.df1(bs(n,1:end), as(n,1:end))]; 
 end
