@@ -30,9 +30,10 @@ end
 nfreqs=length(freqs); % number of frequencies we are working with
 
 % normalize TF coeffecients so input amplitude corresponds directly to output 
-ampscales=pi./(fs./freqs)*2; 
+%ampscales=(freqs.*2*pi)/fs; 
 
-% vector representing coeffecients for calculating frequencies of TFs
+% vector representing coeffecients for normalizing
+% the calculation of frequencies and amplitudes
 alphas=(2*pi.*freqs)/fs;
 
 % where the TF of the digital oscillator is
@@ -42,7 +43,7 @@ alphas=(2*pi.*freqs)/fs;
 bs=[]; % vector to hold numerators
 counter=1;
 for n=amps
-    bs=[bs; ampscales(counter)*n 0 0]; % multiply coefficient for z^2 term by desired amplitude
+    bs=[bs; alphas(counter)*n 0 0]; % multiply coefficient for z^2 term by desired amplitude
     counter=counter+1;
 end
 
