@@ -77,7 +77,7 @@ title('Steered Coherent Response Power vs Microphone Array Spacing')
 xlabel('Microphone Array Spacing (m)')
 ylabel('SCRP SNR (dB)')
 legend('Average SNR','SNR Standard Deviation','SNR Variance')
-pause
+hold off
 
 % matt ruffner 2/28/17
 % added simple loop with pause to inspect plot
@@ -180,7 +180,7 @@ for mint=mints
     %  Set up figure for plotting
     figure(fno)
     %  Plot SRP image
-    surf(im); 
+    surf(gridax{1},gridax{2},im); 
     %imagesc(gridax{1},gridax{2}, im, [0, max(max(im))]);
     colormap(jet); colorbar; axis('xy')
     axis([froom(1,1)-.25, froom(1,2)+.25, froom(2,1)-.25, froom(2,2)+.25])
