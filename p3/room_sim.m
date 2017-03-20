@@ -64,8 +64,11 @@ spos=[rand(1)*2.8+.25,rand(1)*2.8+.25,rand(1)*1.8+.25];
 numSp = size(wavefilesn,1);
 
 while size(spos, 1) < numSp+1
+    % generate a point that is in the room and at least .25m from each wall
+    % and ceiling
     newPoint=[rand(1)*2.8+.25,rand(1)*2.8+.25,rand(1)*1.8+.25];
 
+    % find distance from this point to all other points created thus far
     tempDist = sum((spos - repmat(newPoint, size(spos, 1), 1)) .^ 2, 2);
 
     % Only add this point if it is far enough away from all others.
@@ -169,8 +172,9 @@ sigoutse = cocktailp(sigins, spos(:,1), mpose, recinfo);
 
 % % Simulate cocktail party recording for noise speakers with both mic
 % configs
+% adjacent line arrays
 sigoutna = cocktailp(siginn, spos(:,2:end), mposa, recinfo);
-% equidistant
+% equidistant perim
 sigoutne = cocktailp(siginn, spos(:,2:end), mpose, recinfo);
 
 

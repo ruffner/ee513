@@ -12,6 +12,11 @@
 %
 % This script reads in audio, speaker positions and microphone positions
 % created by the room_sim.m script, also part of Project 3 code.
+% 
+% It then iterates over the given SNR values and both mic arrays types for
+% the data in the given trial folder, outputting 4*NUM-SNR-VALUES wav
+% files, each titled with enough information to identify them, in the
+% corresponding trial folder.
 
 clear
 
