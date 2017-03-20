@@ -181,11 +181,13 @@ dlmwrite('mpose.dat', mpose, ' ');
 % save speaker positions to file
 dlmwrite('spos.dat', spos, ' ');
 
+minlen=min([size(sigoutsa,1) size(sigoutse,1) size(sigoutna,1) size(sigoutne,1)]);
+
 
 % Save all channels of sigout
 if sflag == 1
-    audiowrite('sigoutsa.wav', sigoutsa,fs);
-    audiowrite('sigoutse.wav', sigoutse,fs);
-    audiowrite('sigoutna.wav', sigoutna,fs);
-    audiowrite('sigoutne.wav', sigoutne,fs);
+    audiowrite('sigoutsa.wav', sigoutsa(1:minlen,:),fs);
+    audiowrite('sigoutse.wav', sigoutse(1:minlen,:),fs);
+    audiowrite('sigoutna.wav', sigoutna(1:minlen,:),fs);
+    audiowrite('sigoutne.wav', sigoutne(1:minlen,:),fs);
 end
