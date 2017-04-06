@@ -13,11 +13,11 @@ sig=filtfilt(b,a,sigin);
 sig=abs(hilbert(sig));
 
 % lowpass for a smooth envelope
-[b,a]=butter(5,100/fs,'low');
+[b,a]=butter(5,50*2/fs,'low');
 sig=filtfilt(b,a,sig);
 
 % find signal peak
-[maxp,maxi]=max(sig)
+[maxp,maxi]=max(sig);
 
 % test cutoffs upper and lower
 tlower=maxi;
